@@ -1,0 +1,836 @@
+{
+    "type": "database",
+    "name": "Ecopals_Database",
+    "objects": [
+        {
+            "type": "table",
+            "database": null,
+            "name": "Additives",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE Additives (AdditiveID TEXT PRIMARY KEY ON CONFLICT FAIL, \"Melting Point\" REAL)",
+            "columns": [
+                {
+                    "name": "AdditiveID",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "PRIMARY KEY",
+                            "definition": "PRIMARY KEY ON CONFLICT FAIL"
+                        }
+                    ]
+                },
+                {
+                    "name": "Melting Point",
+                    "type": "REAL"
+                }
+            ],
+            "rows": [
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "Aggregate_Profiles",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE Aggregate_Profiles (AggrID TEXT PRIMARY KEY ON CONFLICT FAIL, \"0\/2 Sand\" REAL, \"0\/2 Basalt\" REAL, \"2\/5 Basalt\" REAL, \"5\/8 Basalt\" REAL, \"8\/11 Basalt\" REAL, Filler REAL, \">45mm\" REAL, \"32mm\" REAL, \"22.4mm\" REAL, \"16mm\" REAL, \"11.2mm\" REAL, \"8mm\" REAL, \"5.6mm\" REAL, \"2mm\" REAL, \"1mm\" REAL, \"0.5mm\" REAL, \"0.25mm\" REAL, \"0.125mm\" REAL, \"0.063mm\" REAL, \"<0.063mm\" REAL, Materials TEXT)",
+            "columns": [
+                {
+                    "name": "AggrID",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "PRIMARY KEY",
+                            "definition": "PRIMARY KEY ON CONFLICT FAIL"
+                        }
+                    ]
+                },
+                {
+                    "name": "0\/2 Sand",
+                    "type": "REAL"
+                },
+                {
+                    "name": "0\/2 Basalt",
+                    "type": "REAL"
+                },
+                {
+                    "name": "2\/5 Basalt",
+                    "type": "REAL"
+                },
+                {
+                    "name": "5\/8 Basalt",
+                    "type": "REAL"
+                },
+                {
+                    "name": "8\/11 Basalt",
+                    "type": "REAL"
+                },
+                {
+                    "name": "Filler",
+                    "type": "REAL"
+                },
+                {
+                    "name": ">45mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "32mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "22.4mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "16mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "11.2mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "8mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "5.6mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "2mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "1mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "0.5mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "0.25mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "0.125mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "0.063mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "<0.063mm",
+                    "type": "REAL"
+                },
+                {
+                    "name": "Materials",
+                    "type": "TEXT"
+                }
+            ],
+            "rows": [
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "DSC_PostProc",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE DSC_PostProc (DSCRef TEXT REFERENCES DSC_Summary (DSCRef) ON DELETE CASCADE ON UPDATE CASCADE, PassNumber INTEGER, Temperature REAL, Median REAL, STD REAL, STDPlus REAL, STDMinus REAL)",
+            "columns": [
+                {
+                    "name": "DSCRef",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES DSC_Summary (DSCRef) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "PassNumber",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "Temperature",
+                    "type": "REAL"
+                },
+                {
+                    "name": "Median",
+                    "type": "REAL"
+                },
+                {
+                    "name": "STD",
+                    "type": "REAL"
+                },
+                {
+                    "name": "STDPlus",
+                    "type": "REAL"
+                },
+                {
+                    "name": "STDMinus",
+                    "type": "REAL"
+                }
+            ],
+            "rows": [
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "DSC_Summary",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE DSC_Summary (DSCRef TEXT PRIMARY KEY, Samples INTEGER, Laboratory TEXT, Date TEXT, ID TEXT UNIQUE ON CONFLICT FAIL)",
+            "columns": [
+                {
+                    "name": "DSCRef",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "PRIMARY KEY",
+                            "definition": "PRIMARY KEY"
+                        }
+                    ]
+                },
+                {
+                    "name": "Samples",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "Laboratory",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "Date",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "ID",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "UNIQUE",
+                            "definition": "UNIQUE ON CONFLICT FAIL"
+                        }
+                    ]
+                }
+            ],
+            "rows": [
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "DSC_Tests",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE DSC_Tests (DSCRef TEXT REFERENCES DSC_Summary (DSCRef) ON DELETE CASCADE ON UPDATE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE, ID INTEGER, Time INTEGER, FileName TEXT, SampleNumber INTEGER, PassNumber INTEGER, Temperature REAL, Value REAL, RecordRef TEXT PRIMARY KEY)",
+            "columns": [
+                {
+                    "name": "DSCRef",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES DSC_Summary (DSCRef) ON DELETE CASCADE ON UPDATE CASCADE "
+                        }
+                    ]
+                },
+                {
+                    "name": "ID",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "Time",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "FileName",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "SampleNumber",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "PassNumber",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "Temperature",
+                    "type": "REAL"
+                },
+                {
+                    "name": "Value",
+                    "type": "REAL"
+                },
+                {
+                    "name": "RecordRef",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "PRIMARY KEY",
+                            "definition": "PRIMARY KEY"
+                        }
+                    ]
+                }
+            ],
+            "rows": [
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "Ecoflakes",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE Ecoflakes (EcoflakesVersion TEXT PRIMARY KEY, Provider TEXT, \"Source\/Plant\" TEXT, DSCRef TEXT REFERENCES DSC_Summary (DSCRef) ON DELETE CASCADE ON UPDATE CASCADE, TGARef TEXT, XRFRef TEXT)",
+            "columns": [
+                {
+                    "name": "EcoflakesVersion",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "PRIMARY KEY",
+                            "definition": "PRIMARY KEY"
+                        }
+                    ]
+                },
+                {
+                    "name": "Provider",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "Source\/Plant",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "DSCRef",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES DSC_Summary (DSCRef) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "TGARef",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "XRFRef",
+                    "type": "TEXT"
+                }
+            ],
+            "rows": [
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "Projects",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE Projects (ProjectID INTEGER PRIMARY KEY AUTOINCREMENT, Client TEXT, Location TEXT, Type TEXT, \"Sub-type\" TEXT, ConstrCompany TEXT, \"Mixing Responsible\" TEXT, Date DATE, Status TEXT, Comments TEXT)",
+            "columns": [
+                {
+                    "name": "ProjectID",
+                    "type": "INTEGER",
+                    "constraints": [
+                        {
+                            "type": "PRIMARY KEY",
+                            "definition": "PRIMARY KEY AUTOINCREMENT"
+                        }
+                    ]
+                },
+                {
+                    "name": "Client",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "Location",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "Type",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "Sub-type",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "ConstrCompany",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "Mixing Responsible",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "Date",
+                    "type": "DATE"
+                },
+                {
+                    "name": "Status",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "Comments",
+                    "type": "TEXT"
+                }
+            ],
+            "rows": [
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "Samples",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE Samples (Project TEXT REFERENCES Projects (ProjectID) ON DELETE CASCADE ON UPDATE CASCADE, MixID TEXT PRIMARY KEY ON CONFLICT ROLLBACK, SampleMaker TEXT, SampleType TEXT CHECK (SampleType = 'AsphaltMix' OR SampleType = 'Bitumen' OR SampleType = 'AsphaltCore'), DateofConstruction REAL, MixType TEXT, AsphaltMixType TEXT, MixMethod TEXT CHECK (MixMethod = \"wet\" OR MixMethod = \"dry\" OR MixMethod = \"N\/A\"), MixingTime TEXT, MixingTimeDry_Sec REAL, MixingRPM REAL, AddType TEXT REFERENCES Additives (AdditiveID) ON DELETE CASCADE ON UPDATE CASCADE, EFVersion TEXT REFERENCES Ecoflakes (EcoflakesVersion) ON DELETE CASCADE ON UPDATE CASCADE, EFSize TEXT, BitumenQuality TEXT, BitumenProvider TEXT, \"Bitcontent(Mix%)\" REAL, \"RC_(Bit%)\" REAL, \"AddContent(Bit%)\" REAL, \"EF_Content(Bit%)\" REAL, \"CompatibilizerContent(Bit%)\" REAL, CompatibilizerType TEXT, AggregateSiev TEXT REFERENCES Aggregate_Profiles (AggrID) ON DELETE CASCADE ON UPDATE CASCADE, MixingTemperature REAL, UniqueID TEXT AS (SampleType || Mixtype || MixingTemperature || Addtype || EFVersion || BitumenQuality || BitumenProvider || \"Bitcontent(Mix%)\" || \"AddContent(Bit%)\" || \"EF_Content(Bit%)\" || \"CompatibilizerContent(Bit%)\" || CompatibilizerType || AggregateSiev || MixingTime) STORED, Comment TEXT)",
+            "columns": [
+                {
+                    "name": "Project",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES Projects (ProjectID) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "MixID",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "PRIMARY KEY",
+                            "definition": "PRIMARY KEY ON CONFLICT ROLLBACK"
+                        }
+                    ]
+                },
+                {
+                    "name": "SampleMaker",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "SampleType",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "CHECK",
+                            "definition": "CHECK (SampleType = 'AsphaltMix' OR SampleType = 'Bitumen' OR SampleType = 'AsphaltCore')"
+                        }
+                    ]
+                },
+                {
+                    "name": "DateofConstruction",
+                    "type": "REAL"
+                },
+                {
+                    "name": "MixType",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "AsphaltMixType",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "MixMethod",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "CHECK",
+                            "definition": "CHECK (MixMethod = \"wet\" OR MixMethod = \"dry\" OR MixMethod = \"N\/A\")"
+                        }
+                    ]
+                },
+                {
+                    "name": "MixingTime",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "MixingTimeDry_Sec",
+                    "type": "REAL"
+                },
+                {
+                    "name": "MixingRPM",
+                    "type": "REAL"
+                },
+                {
+                    "name": "AddType",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES Additives (AdditiveID) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "EFVersion",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES Ecoflakes (EcoflakesVersion) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "EFSize",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "BitumenQuality",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "BitumenProvider",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "Bitcontent(Mix%)",
+                    "type": "REAL"
+                },
+                {
+                    "name": "RC_(Bit%)",
+                    "type": "REAL"
+                },
+                {
+                    "name": "AddContent(Bit%)",
+                    "type": "REAL"
+                },
+                {
+                    "name": "EF_Content(Bit%)",
+                    "type": "REAL"
+                },
+                {
+                    "name": "CompatibilizerContent(Bit%)",
+                    "type": "REAL"
+                },
+                {
+                    "name": "CompatibilizerType",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "AggregateSiev",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES Aggregate_Profiles (AggrID) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "MixingTemperature",
+                    "type": "REAL"
+                },
+                {
+                    "name": "UniqueID",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "GENERATED",
+                            "definition": "AS (SampleType || Mixtype || MixingTemperature || Addtype || EFVersion || BitumenQuality || BitumenProvider || \"Bitcontent(Mix%)\" || \"AddContent(Bit%)\" || \"EF_Content(Bit%)\" || \"CompatibilizerContent(Bit%)\" || CompatibilizerType || AggregateSiev || MixingTime) STORED"
+                        }
+                    ]
+                },
+                {
+                    "name": "Comment",
+                    "type": "TEXT"
+                }
+            ],
+            "rows": [
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "SampleTracking",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE SampleTracking (TrackID INTEGER PRIMARY KEY AUTOINCREMENT, SampleID TEXT REFERENCES Samples (MixID) ON DELETE CASCADE ON UPDATE CASCADE, Project TEXT REFERENCES Projects (ProjectID) ON DELETE CASCADE ON UPDATE CASCADE, CurrentLocation TEXT, Status TEXT CHECK (Status = 'Active' OR Status = 'Final'), Comments TEXT)",
+            "columns": [
+                {
+                    "name": "TrackID",
+                    "type": "INTEGER",
+                    "constraints": [
+                        {
+                            "type": "PRIMARY KEY",
+                            "definition": "PRIMARY KEY AUTOINCREMENT"
+                        }
+                    ]
+                },
+                {
+                    "name": "SampleID",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES Samples (MixID) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "Project",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES Projects (ProjectID) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "CurrentLocation",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "Status",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "CHECK",
+                            "definition": "CHECK (Status = 'Active' OR Status = 'Final')"
+                        }
+                    ]
+                },
+                {
+                    "name": "Comments",
+                    "type": "TEXT"
+                }
+            ],
+            "rows": [
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "StiffnessModulus_Results",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE StiffnessModulus_Results (SM_ID INTEGER PRIMARY KEY AUTOINCREMENT, Sample TEXT REFERENCES Samples (MixID) ON DELETE CASCADE ON UPDATE CASCADE, Project TEXT REFERENCES Projects (ProjectID) ON DELETE CASCADE ON UPDATE CASCADE, Frequency_Hz REAL, \"-10Celcius_Mpa\" REAL, \"0Celsius_Mpa\" REAL, \"10Celsius_Mpa\" REAL, \"-10CelciusAged_Mpa\" REAL, \"0CelciusAged_Mpa\" REAL, \"10CelciusAged_Mpa\" REAL)",
+            "columns": [
+                {
+                    "name": "SM_ID",
+                    "type": "INTEGER",
+                    "constraints": [
+                        {
+                            "type": "PRIMARY KEY",
+                            "definition": "PRIMARY KEY AUTOINCREMENT"
+                        }
+                    ]
+                },
+                {
+                    "name": "Sample",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES Samples (MixID) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "Project",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES Projects (ProjectID) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "Frequency_Hz",
+                    "type": "REAL"
+                },
+                {
+                    "name": "-10Celcius_Mpa",
+                    "type": "REAL"
+                },
+                {
+                    "name": "0Celsius_Mpa",
+                    "type": "REAL"
+                },
+                {
+                    "name": "10Celsius_Mpa",
+                    "type": "REAL"
+                },
+                {
+                    "name": "-10CelciusAged_Mpa",
+                    "type": "REAL"
+                },
+                {
+                    "name": "0CelciusAged_Mpa",
+                    "type": "REAL"
+                },
+                {
+                    "name": "10CelciusAged_Mpa",
+                    "type": "REAL"
+                }
+            ],
+            "rows": [
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "TestResults_CE",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE TestResults_CE (AsphaltTestID TEXT PRIMARY KEY, Project TEXT REFERENCES Projects (ProjectID) ON DELETE CASCADE ON UPDATE CASCADE, SampleID TEXT REFERENCES Samples (MixID) ON DELETE CASCADE ON UPDATE CASCADE, TestExecution TEXT, \"Source-FileName\" TEXT, \"VoidContent-TPA-Stb-8\" REAL, \"CompactionResistance[21Nm]\" REAL, \"ITS_SplitTensileTest_Dry-TPA-Stb-23\" REAL, \"ITS_SplitTensileTest_Wet-TPA-Stb-23\" REAL, \"ITSR_WaterSenstivity_Perc_TPA-Stb-12\" REAL, \"RutDepth10000cycl_mm_TPA-Stb-20\" REAL, StffnessModTPAStb26 NUMERIC REFERENCES StiffnessModulus_Results (SM_ID) ON DELETE CASCADE ON UPDATE CASCADE, \"Fatigue_LoadcyclesNWP_TPA-Stb-24\" REAL, \"Fatigue_LoadcyclesNMax_TPA-Stb-24\" REAL, \"FatigueAged_LoadcyclesNWP_TPA-Stb-24\" REAL, \"FatigueAged_LoadcyclesNMax_TPA-Stb-24\" REAL, BTSV_Bit_Deg_at15kPa_DINEN14770 REAL, BTSVAged_Bit_Deg_at15kPa_DINEN14770 REAL, TBTSV_Bit_Celc_at15kPa_DINEN14770 REAL, TBTSVAged_Bit_Celc_at15kPa_DINEN14770 REAL, \"ColdBreakingTemp_Celsius_TPA-StB-46A\" REAL, \"ColdBreakingStress_Nmm2_TPA-StB-46A\" REAL, SofteningPointRB_Celsius_DINEN1427 REAL, ElasticRecov_Perc_DINEN13398 REAL, FaassBP_Celsius_DINEN12593 REAL, \"BitResult-PG\" REAL, \"MaxDensity(g\/cm3)\" NUMERIC, \"Penetration(1\/10mm)\" NUMERIC)",
+            "columns": [
+                {
+                    "name": "AsphaltTestID",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "PRIMARY KEY",
+                            "definition": "PRIMARY KEY"
+                        }
+                    ]
+                },
+                {
+                    "name": "Project",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES Projects (ProjectID) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "SampleID",
+                    "type": "TEXT",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES Samples (MixID) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "TestExecution",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "Source-FileName",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "VoidContent-TPA-Stb-8",
+                    "type": "REAL"
+                },
+                {
+                    "name": "CompactionResistance[21Nm]",
+                    "type": "REAL"
+                },
+                {
+                    "name": "ITS_SplitTensileTest_Dry-TPA-Stb-23",
+                    "type": "REAL"
+                },
+                {
+                    "name": "ITS_SplitTensileTest_Wet-TPA-Stb-23",
+                    "type": "REAL"
+                },
+                {
+                    "name": "ITSR_WaterSenstivity_Perc_TPA-Stb-12",
+                    "type": "REAL"
+                },
+                {
+                    "name": "RutDepth10000cycl_mm_TPA-Stb-20",
+                    "type": "REAL"
+                },
+                {
+                    "name": "StffnessModTPAStb26",
+                    "type": "NUMERIC",
+                    "constraints": [
+                        {
+                            "type": "FOREIGN KEY",
+                            "definition": "REFERENCES StiffnessModulus_Results (SM_ID) ON DELETE CASCADE ON UPDATE CASCADE"
+                        }
+                    ]
+                },
+                {
+                    "name": "Fatigue_LoadcyclesNWP_TPA-Stb-24",
+                    "type": "REAL"
+                },
+                {
+                    "name": "Fatigue_LoadcyclesNMax_TPA-Stb-24",
+                    "type": "REAL"
+                },
+                {
+                    "name": "FatigueAged_LoadcyclesNWP_TPA-Stb-24",
+                    "type": "REAL"
+                },
+                {
+                    "name": "FatigueAged_LoadcyclesNMax_TPA-Stb-24",
+                    "type": "REAL"
+                },
+                {
+                    "name": "BTSV_Bit_Deg_at15kPa_DINEN14770",
+                    "type": "REAL"
+                },
+                {
+                    "name": "BTSVAged_Bit_Deg_at15kPa_DINEN14770",
+                    "type": "REAL"
+                },
+                {
+                    "name": "TBTSV_Bit_Celc_at15kPa_DINEN14770",
+                    "type": "REAL"
+                },
+                {
+                    "name": "TBTSVAged_Bit_Celc_at15kPa_DINEN14770",
+                    "type": "REAL"
+                },
+                {
+                    "name": "ColdBreakingTemp_Celsius_TPA-StB-46A",
+                    "type": "REAL"
+                },
+                {
+                    "name": "ColdBreakingStress_Nmm2_TPA-StB-46A",
+                    "type": "REAL"
+                },
+                {
+                    "name": "SofteningPointRB_Celsius_DINEN1427",
+                    "type": "REAL"
+                },
+                {
+                    "name": "ElasticRecov_Perc_DINEN13398",
+                    "type": "REAL"
+                },
+                {
+                    "name": "FaassBP_Celsius_DINEN12593",
+                    "type": "REAL"
+                },
+                {
+                    "name": "BitResult-PG",
+                    "type": "REAL"
+                },
+                {
+                    "name": "MaxDensity(g\/cm3)",
+                    "type": "NUMERIC"
+                },
+                {
+                    "name": "Penetration(1\/10mm)",
+                    "type": "NUMERIC"
+                }
+            ],
+            "rows": [
+            ]
+        }
+    ]
+}
